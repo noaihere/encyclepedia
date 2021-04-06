@@ -22,8 +22,7 @@ class BlogIndex extends React.Component {
       <input
               type="text"
               aria-label="Search"
-              placeholder="Type to filter posts..."
-              onChange={handleInputChange}/>      
+              placeholder="Type to filter posts..."/>      
       <Layout location={location}>
         <Helmet title={siteTitle} />
         <Bio settings={author} />
