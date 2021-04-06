@@ -19,10 +19,7 @@ class BlogIndex extends React.Component {
     const location = get(this, 'props.location')
 
     return (
-      <input
-              type="text"
-              aria-label="Search"
-              placeholder="Type to filter posts..."/>      
+      <h1>Hello</h1>  
       <Layout location={location}>
         <Helmet title={siteTitle} />
         <Bio settings={author} />
