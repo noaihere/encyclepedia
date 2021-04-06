@@ -22,6 +22,12 @@ class BlogIndex extends React.Component {
       <Layout location={location}>
         <Helmet title={siteTitle} />
         <Bio settings={author} />
+          <input
+              type="text"
+              aria-label="Search"
+              placeholder="Type to filter posts..."
+              onChange={handleInputChange}
+          />      
         {posts.map(({ node }) => {
           const title = get(node, 'title') || node.slug
           return (
