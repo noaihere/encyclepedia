@@ -27,6 +27,7 @@ class BlogIndex extends React.Component {
           const title = get(node, 'title') || node.slug
           return (
             <div key={node.slug}>
+            <h3>node.metadata.category</h3>
               <h3
                 style={{
                   marginBottom: rhythm(1 / 4),
@@ -57,6 +58,7 @@ export const pageQuery = graphql`
         node {
           metadata {
             description
+            category
           }
           slug
           title
