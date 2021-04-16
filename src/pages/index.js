@@ -34,6 +34,7 @@ class BlogIndex extends React.Component {
       <Layout location={location}>
         <Helmet title={siteTitle} />
         <Bio settings={author} />
+        <p>pick a topic </p>
         {tags.map((cat) => (
             <ul style={{ marginBottom: 0, marginLeft: 0, display: "inline-block" }}>
             <li 
