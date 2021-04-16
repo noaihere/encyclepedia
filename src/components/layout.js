@@ -77,7 +77,7 @@ export default ({ children, location }) => (
                 style={{
                   boxShadow: 'none',
                   textDecoration: 'none',
-                  color: 'inherit',
+                  color: '#ffffff',
                   fontFamily: 'Courier Prime'                       
                 }}
                 to={'/'}
