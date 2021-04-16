@@ -44,7 +44,7 @@ class BlogIndex extends React.Component {
             padding: `2px 6px`,
             marginRight: `5px`,
             fontSize: `80%`,
-            backgroundColor: "#007acc",
+            backgroundColor: "#000000",
             color: "white",
             listStyle: "none"
             }} 
@@ -79,7 +79,7 @@ class BlogIndex extends React.Component {
             padding: `2px 6px`,
             marginRight: `5px`,
             fontSize: `80%`,
-            backgroundColor: "#007acc",
+            backgroundColor: "#000000",
             color: "white",
             listStyle: "none"
             }} 
