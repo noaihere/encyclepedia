@@ -1,8 +1,10 @@
 const each = require('lodash/each')
 const Promise = require('bluebird')
 const path = require('path')
+const _ = require('lodash');
 
 exports.createPages = ({ graphql, actions }) => {
+  const tagTemplate = path.resolve('./src/templates/tagsTemplate.js')  
   const { createPage } = actions
   const indexPage = path.resolve('./src/pages/index.js')
   createPage({
@@ -20,7 +22,10 @@ exports.createPages = ({ graphql, actions }) => {
               edges {
                 node {
                   slug,
-                  title
+                  title,
+                 metadata {
+                 category
+                 }				  
                 }
               }
             }
@@ -49,6 +54,25 @@ exports.createPages = ({ graphql, actions }) => {
             },
           })
         })
+        let tags = [];
+        // Iterate through each post, putting all found tags into `tags`
+        _.each(posts, edge => {
+          if (_.get(edge, 'node.metadata.category')) {
+           tags = tags.concat(edge.node.metadata.category);
+          }
+        });
+        // Eliminate duplicate tags
+        tags = _.uniq(tags);
+        // Make tag pages
+        tags.forEach(tag => {
+          createPage({
+        path: `tags/${tag}/`,
+        component: tagTemplate,  
+           context: {
+                  tag,
+                  }    
+         });        
+        })		
       })
     )
   })
