@@ -22,7 +22,7 @@ class TagIndex extends React.Component {
       <Layout location={location}>
         <Helmet title={siteTitle} />
         <Bio settings={author} />
-        <h1>test {tag}</h1>
+        <p>Displaying category {tag}</p>
         {posts.map(({ node }) => {
           const title = get(node, 'title') || node.slug
           return (
@@ -40,10 +40,16 @@ class TagIndex extends React.Component {
               <p
                 dangerouslySetInnerHTML={{ __html: node.metadata.description }}
               />
-            <small>{node.metadata.category}</small>
             </div>
           )
         })}
+        <div
+          style={{
+            marginTop: rhythm(1.4),
+          }}
+        >
+          <Link to="/">← Back to Posts</Link>
+        </div>
       </Layout>
     )
   }
