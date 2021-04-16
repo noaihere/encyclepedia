@@ -10,6 +10,7 @@ import { rhythm, scale } from '../utils/typography'
 // Import typefaces
 import 'typeface-montserrat'
 import 'typeface-merriweather'
+import 'typeface-courier-prime'
 
 export default ({ children, location }) => (
   <StaticQuery
@@ -39,12 +40,15 @@ export default ({ children, location }) => (
 
       let rootPath = `/`
       let postsPath = `/posts`
+      let tagsPath = `/tags`  
+  
       if (typeof __PREFIX_PATHS__ !== `undefined` && __PREFIX_PATHS__) {
         rootPath = __PATH_PREFIX__ + `/`
         postsPath = __PATH_PREFIX__ + `/posts`
+        tagsPath = __PATH_PREFIX__ + `/tags`        
       }
 
-      if (location.pathname === rootPath || location.pathname === postsPath) {
+      if (location.pathname === rootPath || location.pathname === postsPath || location.pathname.startsWith(tagsPath)) {
         header = (
           <BackgroundImage
             Tag="div"
@@ -74,6 +78,7 @@ export default ({ children, location }) => (
                   boxShadow: 'none',
                   textDecoration: 'none',
                   color: 'inherit',
+                  fontFamily: 'Courier Prime'                       
                 }}
                 to={'/'}
               >
@@ -86,7 +91,7 @@ export default ({ children, location }) => (
         header = (
           <h3
             style={{
-              fontFamily: 'Montserrat, sans-serif',
+              fontFamily: 'Courier Prime',
               marginTop: 0,
               marginBottom: rhythm(-1),
               marginLeft: 'auto',
@@ -118,6 +123,7 @@ export default ({ children, location }) => (
               maxWidth: rhythm(24),
               padding: `0 ${rhythm(3 / 4)} ${rhythm(1.5)} ${rhythm(3 / 4)}`,
               minHeight: 'calc(100vh - 42px)',
+              fontFamily: 'Courier Prime'                  
             }}
           >
             {children}
