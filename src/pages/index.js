@@ -3,9 +3,11 @@ import { Link } from 'gatsby'
 import get from 'lodash/get'
 import { Helmet } from 'react-helmet'
 import { graphql } from 'gatsby'
+const _ = require('lodash');
 
 import Bio from '../components/Bio'
 import Layout from '../components/layout'
+import Tags from '../components/layout'
 import { rhythm } from '../utils/typography'
 
 class BlogIndex extends React.Component {
@@ -18,11 +20,39 @@ class BlogIndex extends React.Component {
     const author = get(this, 'props.data.cosmicjsSettings.metadata')
     const location = get(this, 'props.location')
 
+    let tags = [];
+     // Iterate through each post, putting all found category into `tags`
+    _.each(posts, edge => {
+      if (_.get(edge, 'node.metadata.category')) {
+         tags = tags.concat([edge.node.metadata.category]);
+          }
+    });
+    // Eliminate duplicate tags
+    tags = _.uniq(tags);    
+    
     return (
       <Layout location={location}>
         <Helmet title={siteTitle} />
         <Bio settings={author} />
-        <h1>test</h1>
+        {tags.map((cat) => (
+            <ul style={{ marginBottom: 0, marginLeft: 0, display: "inline-block" }}>
+            <li 
+            key={cat} style = {{ listStyle: "none"}}>
+            <Link style = {{
+            borderRadius: `4px`,
+            border: `1px solid grey`,
+            padding: `2px 6px`,
+            marginRight: `5px`,
+            fontSize: `80%`,
+            backgroundColor: "#007acc",
+            color: "white",
+            listStyle: "none"
+            }} 
+          to={`/tags/${cat}/`}>
+          {cat}
+          </Link>
+          </li></ul>
+          ))}
         {posts.map(({ node }) => {
           const title = get(node, 'title') || node.slug
           return (
@@ -40,7 +70,23 @@ class BlogIndex extends React.Component {
               <p
                 dangerouslySetInnerHTML={{ __html: node.metadata.description }}
               />
-            <small>{node.metadata.category}</small>
+            <ul style={{ marginBottom: 0, marginLeft: 0, display: "inline-flex" }}>
+            <li 
+            key={node.metadata.category} style = {{ listStyle: "none"}}>
+            <Link style = {{
+            borderRadius: `4px`,
+            border: `1px solid grey`,
+            padding: `2px 6px`,
+            marginRight: `5px`,
+            fontSize: `80%`,
+            backgroundColor: "#007acc",
+            color: "white",
+            listStyle: "none"
+            }} 
+            to={`/tags/${node.metadata.category}/`}>
+            {node.metadata.category}
+            </Link>
+            </li></ul>
             </div>
           )
         })}
