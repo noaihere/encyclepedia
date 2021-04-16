@@ -42,13 +42,6 @@ class BlogPostTemplate extends React.Component {
         `}
         </style>
         <Helmet title={`${post.title} | ${siteTitle}`} />
-        <div
-          style={{
-            marginTop: rhythm(1.4),
-          }}
-        >
-          <Link to="/">← Back to Posts</Link>
-        </div>
         <h1
           style={{
             marginTop: rhythm(1),
@@ -111,6 +104,20 @@ class BlogPostTemplate extends React.Component {
             </li>
           )}
         </ul>
+        <div
+          style={{
+            marginTop: rhythm(1.4),
+          }}
+        >
+          <Link to="/">← Back to Posts</Link>
+        </div>
+        <div
+          style={{
+            marginTop: rhythm(1.4),
+          }}
+        >
+          <Link to={`/tags/${post.metadata.category}/`}>← Back to {post.metadata.category}</Link>
+        </div>
       </Layout>
     )
   }
@@ -126,6 +133,7 @@ export const pageQuery = graphql`
       title
       created(formatString: "MMMM DD, YYYY")
       metadata {
+        category
         hero {
           local {
             childImageSharp {
