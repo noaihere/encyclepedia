@@ -54,6 +54,7 @@ class BlogIndex extends React.Component {
           </Link>
           </li></ul>
           ))}
+        <p>or read a post below </p>  
         {posts.map(({ node }) => {
           const title = get(node, 'title') || node.slug
           return (
